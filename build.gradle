@@ -1,17 +1,31 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 version = '1.0'
+mainClassName = 'com.grieger.loadsink.Main'
+
+
 
 repositories {
     mavenCentral()
 }
 
+configurations {
+    quasar
+    compile {
+        extendsFrom quasar
+    }
+}
+
 dependencies {
     compile 'io.undertow:undertow-core:1.2.0.Beta4'
     compile 'io.undertow:undertow-servlet:1.2.0.Beta4'
-    compile 'co.paralleluniverse:quasar-core:0.6.1:jdk8'
+    quasar 'co.paralleluniverse:quasar-core:0.6.1:jdk8'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+// Add quasar instrumentation
+applicationDefaultJvmArgs = ["-javaagent:${configurations.quasar.iterator().next()}"]
