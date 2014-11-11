@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.undertow:undertow-core:1.2.0.Beta4'
+    compile 'io.undertow:undertow-servlet:1.2.0.Beta4'
+    compile 'co.paralleluniverse:quasar-core:0.6.1:jdk8'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
